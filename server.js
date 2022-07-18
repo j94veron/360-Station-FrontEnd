@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const environments = require ('./environments.json');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
