@@ -1,0 +1,53 @@
+<div class="align-items-center justify-content-center">
+    <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
+        <div class="col-12 mt-5 xl:mt-0 text-center">
+          <div class='card-header text-center'>
+            {{pageTitle + '' + getUser().name + ' ' + getUser().surname}}
+          </div>
+        </div>
+        <div class="col-12 xl:col-6" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgb(255, 255, 255) 30%);">
+            <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
+                
+                <div class="text-center mb-5">
+                    <div class="text-900 text-3xl font-medium mb-3">¡Hola!, Bienvenido {{getUser().name + ' ' + getUser().surname}} a 360 Station!</div>
+                    <span class="text-600 font-medium"> Desde estas opcion podras gestionar tus datos de la Cuenta!</span>
+                    <br>
+                    <span class="text-600 font-medium"> Para actualizar sus datos por favor cambie los textos de los campos habilitados.</span>
+                </div>
+
+                <div class="text-center mb-5">
+                <div class="field">
+                    <label for="name">Nombre: &nbsp;</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="getUser().name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().name">SKU is required.</small>
+                </div>
+                <div class="field">
+                    <label for="surname">Apellido: &nbsp; </label>
+                    <input type="text" pInputText id="surname" [(ngModel)]="getUser().surname" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().surname}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().surname">SKU is required.</small>
+                </div>
+                <div class="field">
+                    <label for="username">Usuario:  &nbsp;</label>
+                    <input type="text" pInputText id="username" [(ngModel)]="getUser().username" required disabled autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().username}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().username">SKU is required.</small>
+                </div>
+                <div class="field">
+                    <label for="email">E-mail: &nbsp;</label>
+                    <input type="email" pInputText id="email" [(ngModel)]="getUser().email" required  disabled autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().email}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().email">SKU is required.</small>
+                </div>
+                <div class="field">
+                    <label for="address">Direccion: &nbsp;</label>
+                    <input type="text" pInputText id="address" [(ngModel)]="getUser().address" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().address}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().address">SKU is required.</small>
+                </div>
+                <div class="field">
+                    <label for="phone">Telefono: &nbsp;</label>
+                    <input type="text" pInputText id="phone" [(ngModel)]="getUser().phone" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !getUser().phone}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !getUser().phone">SKU is required.</small>
+                </div>    
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>

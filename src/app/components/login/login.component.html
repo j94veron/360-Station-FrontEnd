@@ -1,0 +1,87 @@
+<div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
+        <div class="col-12 mt-5 xl:mt-0 text-center">
+            <img src="assets/demo/images/360_Station_Store.png" alt="360 Station logo" class="mb-5" style="width:100px; height:100px;">
+        </div>
+        <div class="col-12 xl:col-6" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(22, 128, 214, 0) 30%);">
+            <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
+                <div class="text-center mb-5">
+                    <img src="assets/demo/images/icon_user.svg" alt="Image" height="150" class="mb-3">
+                    <div class="text-900 text-3xl font-medium mb-3">¡Hola!, Bienvenido a 360 Station!</div>
+                    <span class="text-600 font-medium"> Para poder disfrutar de nuestros Productos</span>
+                    <br>
+                    <span class="text-600 font-medium"> Por favor ingrese los datos solicitados!</span>
+                </div>
+            
+                <div class="w-full md:w-10 mx-auto">
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Usuario/Email</label>
+                    <input id="email1" type="text" [(ngModel)]="credentialData.username" placeholder="Email address" pInputText class="w-full mb-3" style="padding:1rem;">
+            
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
+                    <p-password id="password1" [(ngModel)]="credentialData.password" placeholder="Password" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
+            
+                    <div class="flex align-items-center justify-content-between mb-5">
+                        <div class="flex align-items-center">
+                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="openNew()">No tenes usuario? Hace clic aca y registrate!</a>
+                        </div>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="saveUser()">Recuperar Contraseña?</a>
+                    </div>
+                    <button pButton pRipple label="Entrar" class="w-full p-3 text-xl" (click)="login()"></button>
+                    <br>
+                    <br>
+                    <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="onHome()">Volver al Home del sitio!</a>
+                </div>
+
+                <p-dialog [(visible)]="userDialog" [style]="{width: '450px'}" header="Crear Usuario" [modal]="true" class="p-fluid">
+                    <ng-template pTemplate="content">
+                        <div class="field">
+                            <label for="name">Nombre</label>
+                            <input type="text" pInputText id="name" [(ngModel)]="createUser.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.name}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.name">Name is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="surname">Apellido</label>
+                            <input type="text" pInputText id="surname" [(ngModel)]="createUser.surname" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.surname}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.surname">Surname is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="username">Usuario</label>
+                            <input type="username" pInputText id="username" [(ngModel)]="createUser.username" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.username}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.username">Username is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input type="password" pInputText id="password" [(ngModel)]="createUser.password" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.password}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.password">Password is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="email">E-mail</label>
+                            <input type="email" pInputText id="email" [(ngModel)]="createUser.email" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.email}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.email">Email is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="address">Direccion</label>
+                            <input type="text" pInputText id="address" [(ngModel)]="createUser.address" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.address}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.address">Address is required.</small>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Telefono</label>
+                            <input type="text" pInputText id="phone" [(ngModel)]="createUser.phone" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !createUser.phone}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !createUser.phone">Phone is required.</small>
+                        </div>                        
+                    </ng-template>
+        
+                    <ng-template pTemplate="footer">
+                        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+                    </ng-template>
+                </p-dialog>
+
+                <p-dialog [(visible)]="userUpdateDialog" [style]="{width: '450px'}" header="Recuperar Contraseña" [modal]="true" class="p-fluid">
+
+                </p-dialog>
+                
+            </div>
+        </div>
+    </div>
+</div>

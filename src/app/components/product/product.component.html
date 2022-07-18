@@ -1,0 +1,68 @@
+<div class="align-items-center justify-content-center">
+  <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
+      <div class="col-12 mt-5 xl:mt-0 text-center">
+        <div class='card-header text-center'>
+          {{pageTitle + ': ' + product?.name}}
+        </div>
+      </div>
+      <div class="col-12 xl:col-6" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgb(255, 255, 255) 30%);">
+          <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
+              <div class="text-center mb-5">
+                  <div class="text-2xl font-bold">{{product.name}}</div>
+                  <br>
+                  <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" [width]="500" [height]="500" class="center-block img-responsive" />
+                  <br>
+                  <div class='col-md-4 text-2xl font-bold'>Precio: {{product.price|currency:'AR ':'$'}}</div>
+                  <br>
+                  <div class='col-md-4 font-semibold'>Marca: {{product.trademarks}}</div>
+                  <div class='col-md-4 font-semibold'>Categoria: {{product.category}}</div>
+                  <div class='col-md-4 font-semibold'>SKU: {{product.sku}}</div>
+                  <div class='col-md-8 font-semibold'>Status: {{product.status}}</div>
+                  <div class='col-md-8 font-semibold'>Cantidad Disponible: {{product.stocks}}</div>
+                  <br>
+                  <div class='col-md-8 font-bold'>Detalle del Producto: {{product.descriptions}}</div>
+              </div>
+              <div class="text-center mb-5">
+                <div class='col-md-6' >(Cantidad Disponible: {{product.stocks}})</div>
+                <br>
+                <p-button (click)="openNew()" icon="pi pi-external-link" label="Comprar Ahora!" [disabled]="product.status === 'outofstock'" icon="pi pi-shopping-cart" class="p-button-text"></p-button>
+              </div>
+                <a (click)='onBack()'>Volver al Listado de Productos</a>
+          </div>
+      </div>
+
+      <p-dialog [(visible)]="orderDialog" [style]="{width: '450px'}" header="Realiza tu Pedido Ahora!" [modal]="true" class="p-fluid">
+        <ng-template pTemplate="content">
+          <div class="field">
+              <label for="name">Seleccione cantidad: (Disponible {{product.stocks}})</label>
+              <input type="text" pInputText id="quantity" [(ngModel)]="order.quantity" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !order.quantity}"/>
+              <small class="ng-dirty ng-invalid" *ngIf="submitted && !order.quantity">Quantity is required.</small>
+          </div>
+          <div class="field">
+            <label class="mb-3">Tipo de Envio </label>
+            <div class="formgrid grid">
+                <div *ngFor="let category of shipppingies" class="field-radiobutton col-6">
+                    <p-radioButton [value]="category" [(ngModel)]="selectedShipping">
+                    </p-radioButton>
+                    <label [for]="category.key">{{category.label}}</label>
+                </div>
+            </div>
+        </div>
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+          <div class="col-12 mt-5 xl:mt-0 text-center">
+            <div class='card-header text-center'>
+              Al precio total generado por la plataforma se deberan sumar en el caso del envio a domicilio el costo del mismo.
+            </div>
+            <br>
+            <div class='card-header text-center'>
+              En envio se realizara en los 7 dias habiles de realizado el pedido.
+            </div>
+          </div>
+          <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+          <button pButton pRipple label="Comprar Producto" icon="pi pi-check" class="p-button-text" (click)="saveOrder()"></button>
+        </ng-template>
+      </p-dialog>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="assets/demo/images/360_Station_Store.png" alt="logo">
+        <span>360 Station</span>
+    </a>
+
+    <a class="p-link layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
+        <i class="pi pi-bars"></i>
+    </a>
+    
+    <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':appMain.topMenuActive}" >
+        <a [routerLink]="['pages/login']" class="p-link layout-topbar-button" *ngIf="!authorizationService.isAuthenticate()">
+           <i class="pi pi-fw pi-user"></i>
+           <span>Login</span>
+       </a>
+       <a [routerLink]="['pages/logout']" class="p-link layout-topbar-button" *ngIf="authorizationService.isAuthenticate()">
+           <i class="pi pi-fw pi-sign-out"></i>
+           <span>Logout</span>
+       </a>
+   </div>
+
+</div>
