@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://stare360station-backend.herokuapp.com/'
+  apiUrl: 'https://stare360station-backend.herokuapp.com'
 };
