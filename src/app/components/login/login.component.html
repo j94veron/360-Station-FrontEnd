@@ -28,6 +28,7 @@
                     </div>
                     <button pButton pRipple label="Entrar" class="w-full p-3 text-xl" (click)="login()"></button>
                     <br>
+                    <label class="block text-900 text-xl font-medium mb-2">{{loginService.handleError}}</label>
                     <br>
                     <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="onHome()">Volver al Home del sitio!</a>
                 </div>
