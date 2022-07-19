@@ -88,7 +88,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { BlockViewer } from './components/blockviewer/blockviewer.component';
-import {ConfirmationService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
  
 import { AppCodeModule } from './components/app-code/app.code.component';
 import { AppComponent } from './app.component';
@@ -256,7 +256,7 @@ import { TableOrdersAllComponent } from './components/table-orders-all/table-ord
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, CreateuserService, LoginService, AuthorizationService, AuthGuardService, OrdersService, ConfirmationService
+        PhotoService, ProductService, MenuService, ConfigService, CreateuserService, LoginService, AuthorizationService, AuthGuardService, OrdersService, ConfirmationService, MessageService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,4 +1,7 @@
+
+
 <div class="grid">
+	<p-toast position="top-right"></p-toast>
 	<div class="col-12">
 		<div class="card">
 			<h5>Market</h5>
@@ -17,7 +20,7 @@
 				<ng-template let-product pTemplate="listItem">
 					<div class="col-12">
 						<div class="flex flex-column md:flex-row align-items-center p-3 w-full">
-							<img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
+							<img [src]="'assets/demo/images/product/' + product.image"  height="300"/>
 							<div class="flex-1 text-center md:text-left">
 								<div class="font-bold text-2xl">{{product.name}}</div>
 								<div class="mb-3">{{product.descriptions}}</div>
@@ -55,7 +58,7 @@
 								<span [class]="'sm:ml-2 product-badge status-' + product.status.toLowerCase()">{{product.status}}</span>
 							</div>
 							<div class="text-center">
-								<img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" class="w-9 shadow-2 my-3 mx-0" />
+								<img [src]="'assets/demo/images/product/' + product.image"  height="300"/>
 								<div class="text-2xl font-bold">{{product.name}}</div>
 								<div class="mb-3">{{product.descriptions}}</div>
 								<p-rating [ngModel]="product.status" [readonly]="true" [cancel]="false"></p-rating>

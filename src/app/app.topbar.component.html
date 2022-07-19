@@ -7,16 +7,16 @@
     <a class="p-link layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
         <i class="pi pi-bars"></i>
     </a>
-    
+
     <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':appMain.topMenuActive}" >
         <a [routerLink]="['pages/login']" class="p-link layout-topbar-button" *ngIf="!authorizationService.isAuthenticate()">
            <i class="pi pi-fw pi-user"></i>
-           <span>Login</span>
+           <span >Login</span>
        </a>
+       <div  class="p-link layout-topbar-button text-500 text-3 font-medium mb-3" *ngIf="authorizationService.isAuthenticate() "> {{ username }} </div>
        <a [routerLink]="['pages/logout']" class="p-link layout-topbar-button" *ngIf="authorizationService.isAuthenticate()">
-           <i class="pi pi-fw pi-sign-out"></i>
+            <i class="pi pi-fw pi-sign-out"></i>
            <span>Logout</span>
        </a>
    </div>
-
 </div>

@@ -1,4 +1,5 @@
 <div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <p-toast position="top-right"></p-toast>
     <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
         <div class="col-12 mt-5 xl:mt-0 text-center">
             <img src="assets/demo/images/360_Station_Store.png" alt="360 Station logo" class="mb-5" style="width:100px; height:100px;">
@@ -28,7 +29,6 @@
                     </div>
                     <button pButton pRipple label="Entrar" class="w-full p-3 text-xl" (click)="login()"></button>
                     <br>
-                    <label class="block text-900 text-xl font-medium mb-2">{{loginService.handleError}}</label>
                     <br>
                     <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="onHome()">Volver al Home del sitio!</a>
                 </div>

@@ -2,16 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import {mergeMap} from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { Createuser } from '@app/models/createuser.model';
 import { CreateuserService } from '@app/service/createuser.service';
 import { LoginService } from "@service/login.service";
 import { CredentialData } from '@app/models/credential.data.model';
 
 @Component({
-  providers: [MessageService, ConfirmationService],
   templateUrl: './login.component.html',
   styles:[`
     :host ::ng-deep .p-password input {
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit{
   credentialData = new CredentialData();
 
   constructor(private createUserService: CreateuserService, private messageService: MessageService,
-    private confirmationService: ConfirmationService, public configService: ConfigService, public loginService: LoginService,
+    public configService: ConfigService, public loginService: LoginService,
     private router: Router){ }
 
   ngOnInit(): void {
@@ -98,7 +97,7 @@ saveUser() {
         ).subscribe((createUserData) => {
             this.createUsers = createUserData;
             this.userDialog = false;
-            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000});
+            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Usuario Modificado.', life: 3000});
         }, (err) => {
             console.log(err)
         });
@@ -107,8 +106,9 @@ saveUser() {
         this.createUserService.save(this.createUser).subscribe((createUserData) => {
             this.createUsers = createUserData;
             this.userDialog = false;
-            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000});
+            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Usuario Creado.', life: 3000});
         }, (err) => {
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Usuario ya creado!! Por favor Ingrese uno nuevo.', life: 3000});
             console.log(err)
         });
 
@@ -118,8 +118,10 @@ saveUser() {
 login(){
   this.loginService.login(this.credentialData).subscribe(() => {
     // login success
+    this.messageService.add({severity: 'Success', summary: 'Successful', detail: 'Login Ok.', life: 3000});
     this.router.navigate(['/']);
   }, (err) => {
+    this.messageService.add({severity: 'error', summary: 'Error', detail: 'Usuario o Contraseña Incorrectos.', life: 3000});
       console.log(err);
   });
 }
