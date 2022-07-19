@@ -38,7 +38,7 @@
                         <th pSortableColumn="price">Precio <p-sortIcon field="price"></p-sortIcon></th>
                         <th pSortableColumn="stocks">Stock <p-sortIcon field="stoscks"></p-sortIcon></th>
                         <th pSortableColumn="category">Categoria <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="rating">Ranking <p-sortIcon field="made"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Diseño <p-sortIcon field="made"></p-sortIcon></th>
                         <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
                         <th></th>
                     </tr>
@@ -73,8 +73,9 @@
                             <span class="p-column-title">Categoria</span>
                             {{product.category}}
                         </td>
-                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Ranking</span>
-                            <p-rating [ngModel]="product.made" [readonly]="true" [cancel]="false"></p-rating>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Diseños</span>
+                            {{product.made}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Status</span>
                             <span [class]="'product-badge status-' + (product.status ? product.status.toLowerCase() : '')">{{product.status}}</span>
@@ -141,8 +142,24 @@
                             </p-radioButton>
                             <label [for]="category.key">{{category.label}}</label>
                         </div>
-
                     </div>
+                </div>
+
+                <div class="field">
+                    <label class="mb-3">Diseño</label>
+                    <div class="formgrid grid">
+                        <div *ngFor="let made of madies" class="field-radiobutton col-6">
+                            <p-radioButton [value]="made" [(ngModel)]="selectedMadies">
+                            </p-radioButton>
+                            <label [for]="made.key">{{made.label}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="typedesign">Tipo de Diseño</label>
+                    <input type="text" pInputText id="typedesign" [(ngModel)]="product.typedesign" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.typedesign}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.typedesign">Type design is required.</small>
                 </div>
 
                 <div class="formgrid grid">

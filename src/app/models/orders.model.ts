@@ -5,6 +5,7 @@ export class Orders {
     public product_id: number;
     public name_product: string;
     public made_product: string;
+    public typedesign: string;
     public category_product: string;
     public shipping: string;
     public address_user: string;
@@ -21,6 +22,7 @@ export class Orders {
         this.product_id = data.product_id;
         this.name_product = data.name_product;
         this.made_product = data.made_product;
+        this.typedesign = data.typedesign;
         this.category_product = data.category_product;
         this.shipping = data.shipping;
         this.address_user = data.address_user;

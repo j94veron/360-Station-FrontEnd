@@ -45,6 +45,10 @@ export class ProductComponent implements OnInit {
 
   selectedShipping: any;
 
+  selectedQuantity: any;
+
+  stockDisp: number[];
+
   credentialData = new CredentialData();
 
   result: any;
@@ -54,9 +58,14 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.productId = +this.route.snapshot.paramMap.get(Constants.PRODUCT_PATH);
+    
     if (this.productId) {
       this.productService.findOne(this.productId).subscribe({
-        next: product => this.product = product,
+        next: product => {
+          this.product = product;
+          this.stockDisp = Array.from({length: this.product.stocks}, (_, i) => i + 1);
+          console.dir(this.stockDisp);
+        },
         error: err => this.errorMessage = err
       });
     } else [
@@ -86,10 +95,6 @@ export class ProductComponent implements OnInit {
     this.submitted = false;
 }
 
-resta(){
-  this.result = this.product.stocks - this.order.quantity; 
-}
-
 saveOrder():void{
     var user = StorageUtils.getUser();
 
@@ -97,11 +102,9 @@ saveOrder():void{
     this.order.customerId = user.username;
     this.order.product_id = this.product.id;
     this.order.name_product = this.product.name;
-    this.order.made_product = "1";
+    this.order.made_product = this.product.made;
     this.order.category_product = this.product.category;
     this.order.shipping = this.selectedShipping.value;
-    this.product.stocks = this.result ;
-    this.order.address_user = user.address;
     this.order.order_status = "SOLICITADO";
     this.order.price_product = this.product.price;
     this.order.active = "ACTIVE";
@@ -113,8 +116,9 @@ saveOrder():void{
       ).subscribe((ordersData) => {
         this.orders = ordersData;
         this.orderDialog = false;
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Order Update', life: 3000});
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Orden Update.', life: 3000});
       }, (err) => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: 'No se ha podido actualizar la orden.', life: 3000});
         console.log(err)
       });
     } else {
@@ -125,8 +129,10 @@ saveOrder():void{
       ).subscribe((ordersData) => {
         this.order = ordersData;
         this.orderDialog = false;
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Order Created', life: 3000});
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Orden Creada.', life: 3000});
       }, (err) => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: 'No se ha podido crear la orden.', life: 3000});
+        this.messageService.add({severity: 'error', summary: 'Error', detail: err, life: 3000});
         console.log(err)
       });
     }

@@ -108,7 +108,7 @@ saveUser() {
             this.userDialog = false;
             this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Usuario Creado.', life: 3000});
         }, (err) => {
-            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Usuario ya creado!! Por favor Ingrese uno nuevo.', life: 3000});
+            this.messageService.add({severity: 'error', summary: 'Error', detail: 'Error Creando Usuario.', life: 3000});
             console.log(err)
         });
 

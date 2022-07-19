@@ -5,6 +5,7 @@ export class Product {
     public name: string;
     public price: string;
     public made: string;
+    public typedesign: string;
     public descriptions: string;
     public category: string;
     public trademarks: string;
@@ -21,6 +22,7 @@ export class Product {
         this.name = data.name;
         this.price = data.price;
         this.made = data.made;
+        this.typedesign = data.typedesign;
         this.descriptions = data.descriptions;
         this.category = data.category;
         this.trademarks = data.trademarks;
