@@ -97,7 +97,7 @@ saveOrder():void{
     this.order.customerId = user.username;
     this.order.product_id = this.product.id;
     this.order.name_product = this.product.name;
-    this.order.made_product = '1';
+    this.order.made_product = "1";
     this.order.category_product = this.product.category;
     this.order.shipping = this.selectedShipping.value;
     this.product.stocks = this.result ;
